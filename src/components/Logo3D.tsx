@@ -23,14 +23,11 @@ const SpinningBox = () => {
 
 const Logo3D = () => {
   return (
-    <div style={{ width: '50px', height: '50px' }}> {/* Adjust size as needed */}
-      <Canvas>
-        <ambientLight intensity={Math.PI / 2} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <SpinningBox />
-      </Canvas>
-    </div>
+    <Canvas camera={{ position: [0, 0, 2.5], fov: 75 }}> {/* Add default camera */}
+      <ambientLight intensity={1.5} /> {/* Simplified lighting */}
+      <directionalLight position={[5, 5, 5]} intensity={1} /> {/* Added directional light */}
+      <SpinningBox />
+    </Canvas>
   );
 };
 

@@ -29,7 +29,7 @@ export default function Home() {
         <Logo3D />
       </div>
       <h1 ref={nameRef} className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-        Your Name Here
+        Ammar Ahmed
       </h1>
       <p ref={taglineRef} className="text-lg sm:text-xl md:text-2xl text-muted-foreground">
         Creative Fullstack Developer 🚀

@@ -1,10 +1,12 @@
 'use client'; // Required for R3F and GSAP
 
 import React, { useRef, Suspense } from 'react';
+import { useEffect } from 'react';
 import * as THREE from 'three'; // Import THREE namespace
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Box, Sphere, Cone } from '@react-three/drei';
 import Link from 'next/link';
+import { gsap } from 'gsap';
 
 const ProjectPreview3D = ({ shape = 'box' }: { shape?: 'box' | 'sphere' | 'cone' }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -33,6 +35,26 @@ const projects = [
 
 export default function ProjectsPage() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    cardRefs.current.forEach((el) => {
+      if (!el) return;
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(el, { y: -10, scale: 1.03, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', duration: 0.3, ease: 'power2.out' });
+
+      el.addEventListener('mouseenter', () => tl.play());
+      el.addEventListener('mouseleave', () => tl.reverse());
+
+      return () => {
+        el.removeEventListener('mouseenter', () => tl.play());
+        el.removeEventListener('mouseleave', () => tl.reverse());
+        if (tl.isActive()) {
+          tl.kill();
+        }
+      };
+    });
+  }, []);
 
 
   return (

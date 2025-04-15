@@ -17,7 +17,7 @@ const Footer = () => {
              <Logo3D />
            </div>
            <p className="text-center text-sm text-muted-foreground md:text-left">
-             © {new Date().getFullYear()} Your Name Here. All rights reserved.
+             © {new Date().getFullYear()} Ammar Ahmed. All rights reserved.
            </p>
         </div>
         <div className="flex gap-4">
